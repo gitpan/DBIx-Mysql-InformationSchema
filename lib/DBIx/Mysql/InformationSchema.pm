@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use DBI;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 
@@ -214,10 +214,27 @@ sub information_schema_tables {
     while (my $table = $sth->fetchrow_array) {
 	push @tables,$table;
     }
-
     return (@tables);
-
 }
+
+
+
+sub table_constraints {
+    my $thisthing = shift or return undef;
+    my $sql = "SELECT * from TABLE_CONTRAINTS";
+    my $sth = $thisthing->{DBH}->prepare($sql);
+    $sth->execute;
+
+    my @results;
+
+    while (my $row = $sth->fetchrow_hashref) {
+	push @results,$row;
+    }
+    return (@results);
+}
+
+
+
 
 
 
