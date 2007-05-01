@@ -1,16 +1,28 @@
-DBIx-Mysql-InformationSchema version 0.01
+DBIx-Mysql-InformationSchema version 0.04
 =========================================
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
 
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+DBIx::Mysql::InformationSchema - Perl module to access the mysql INFORMATION_SCHEMA view, which contains database metadata.
+
+
+
+Mysql 5 introduced a system view called INFORMATION_SCHEMA that contains
+metadata describing the structure of all the databases, tables and
+columns.
+
+This module provides methods to get at SOME of that data.  While you
+certainly can query the INFORMATION_SCHEMA view manually, if your
+program uses this data frequently, you may find this module convenient.
+In order for this to run, you must already have the DBI perl module
+installed.
+
+This module creates and uses its own database handle, stored in
+$object->{DBH}.  See the dbconnect method.  To connect, you must supply
+a username and password that can read INFORMATION_SCHEMA, which is just
+about any valid mysql id.
+
+
+
 
 INSTALLATION
 
